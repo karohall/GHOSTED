@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background-image: url('ASS2ROID__1_.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    font-family: 'Courier Prime', monospace;
+    overflow: hidden;
+  }
+
+  /* dark blue overlay — adjust opacity for more/less transparency */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(18, 16, 38, 0.72);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .scene {
+    position: relative;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  /* TITLE */
+  .title {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(180, 160, 210, 0.3);
+    animation: fadeIn 2s ease forwards;
+  }
+
+  /* DVALA */
+  .dvala {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(180, 160, 210, 0.25);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    animation: fadeIn 4s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* PILL BASE */
+  .pill {
+    position: absolute;
+    border-radius: 50px;
+    padding: 14px 24px;
+    cursor: default;
+    transition: box-shadow 0.5s ease, border-color 0.5s ease, background 0.5s ease;
+    animation: driftIn 1.5s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes driftIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .pill:nth-child(1) { animation-delay: 0.5s; }
+  .pill:nth-child(2) { animation-delay: 0.9s; }
+  .pill:nth-child(3) { animation-delay: 1.3s; }
+  .pill:nth-child(4) { animation-delay: 1.7s; }
+  .pill:nth-child(5) { animation-delay: 2.1s; }
+  .pill:nth-child(6) { animation-delay: 2.5s; }
+  .pill:nth-child(7) { animation-delay: 2.9s; }
+  .pill:nth-child(8) { animation-delay: 3.3s; }
+
+  /* PILL COLORS */
+  .p-blue  { background: rgba(70,100,180,0.12);  border: 0.5px solid rgba(100,140,220,0.2); }
+  .p-green { background: rgba(60,140,90,0.12);   border: 0.5px solid rgba(80,180,110,0.2); }
+  .p-grey  { background: rgba(120,120,140,0.1);  border: 0.5px solid rgba(160,160,180,0.18); }
+  .p-teal  { background: rgba(50,130,140,0.11);  border: 0.5px solid rgba(60,180,190,0.2); }
+  .p-rose  { background: rgba(150,70,90,0.11);   border: 0.5px solid rgba(200,100,120,0.18); }
+  .p-lilac { background: rgba(110,80,160,0.11);  border: 0.5px solid rgba(160,120,220,0.18); }
+
+  /* UNREAD DOT */
+  .dot {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    opacity: 0.45;
+    transition: opacity 0.4s ease;
+  }
+  .p-blue  .dot { background: rgba(120,160,255,1); }
+  .p-green .dot { background: rgba(80,210,120,1); }
+  .p-grey  .dot { background: rgba(180,180,210,1); }
+  .p-teal  .dot { background: rgba(60,210,210,1); }
+  .p-rose  .dot { background: rgba(230,110,130,1); }
+  .p-lilac .dot { background: rgba(180,140,255,1); }
+
+  /* MESSAGE TEXT — hidden by default */
+  .msg {
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+    color: rgba(230,225,240,0);
+    transition: color 0.5s ease;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  /* HOVER STATES */
+  .pill:hover { cursor: default; }
+
+  .p-blue:hover  { background: rgba(70,100,180,0.28);  border-color: rgba(100,150,255,0.5);  box-shadow: 0 0 28px -4px rgba(100,150,255,0.3); }
+  .p-green:hover { background: rgba(60,140,90,0.28);   border-color: rgba(80,200,120,0.5);   box-shadow: 0 0 28px -4px rgba(80,200,120,0.3); }
+  .p-grey:hover  { background: rgba(120,120,140,0.28); border-color: rgba(180,180,210,0.5);  box-shadow: 0 0 28px -4px rgba(180,180,210,0.3); }
+  .p-teal:hover  { background: rgba(50,130,140,0.28);  border-color: rgba(60,200,200,0.5);   box-shadow: 0 0 28px -4px rgba(60,200,200,0.3); }
+  .p-rose:hover  { background: rgba(150,70,90,0.28);   border-color: rgba(220,110,130,0.5);  box-shadow: 0 0 28px -4px rgba(220,110,130,0.3); }
+  .p-lilac:hover { background: rgba(110,80,160,0.28);  border-color: rgba(180,140,255,0.5);  box-shadow: 0 0 28px -4px rgba(180,140,255,0.3); }
+
+  .pill:hover .msg { color: rgba(230,225,240,0.9); }
+  .pill:hover .dot { opacity: 1; animation: pulse 1.4s ease-in-out infinite; }
+
+  @keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+  }
+
+  /* POSITIONS — scattered freely */
+  .pill-1 { top: 12%;  left: 8%; }
+  .pill-2 { top: 22%;  left: 52%; }
+  .pill-3 { top: 38%;  left: 18%; }
+  .pill-4 { top: 18%;  left: 30%; }
+  .pill-5 { top: 55%;  left: 60%; }
+  .pill-6 { top: 65%;  left: 10%; }
+  .pill-7 { top: 72%;  left: 38%; }
+  .pill-8 { top: 48%;  left: 74%; }
+
+</style>
+</head>
+<body>
+
+<div class="scene">
+
+  <div class="title">GHOSTED &nbsp;—&nbsp; digital traces of the unsent</div>
+
+  <div class="pill p-blue pill-1">
+    <div class="dot"></div>
+    <span class="msg">are you coming tonight</span>
+  </div>
+
+  <div class="pill p-green pill-2">
+    <div class="dot"></div>
+    <span class="msg">I found the thing you left at mine</span>
+  </div>
+
+  <div class="pill p-grey pill-3">
+    <div class="dot"></div>
+    <span class="msg">I'm sorry I didn't say it properly</span>
+  </div>
+
+  <div class="pill p-teal pill-4">
+    <div class="dot"></div>
+    <span class="msg">call me when you can okay</span>
+  </div>
+
+  <div class="pill p-rose pill-5">
+    <div class="dot"></div>
+    <span class="msg">I've been thinking about what you said</span>
+  </div>
+
+  <div class="pill p-lilac pill-6">
+    <div class="dot"></div>
+    <span class="msg">it doesn't matter anymore I think</span>
+  </div>
+
+  <div class="pill p-grey pill-7">
+    <div class="dot"></div>
+    <span class="msg">I just wanted you to know</span>
+  </div>
+
+  <div class="pill p-rose pill-8">
+    <div class="dot"></div>
+    <span class="msg">never mind</span>
+  </div>
+
+  <div class="dvala">what do you do with a message that never arrived?</div>
+
+</div>
+</body>
+</html>
