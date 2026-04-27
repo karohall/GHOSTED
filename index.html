@@ -180,21 +180,5 @@
         <div class="pill c8"><span>I'm sorry I wasn't there</span></div>
       </div>
 
-    </div>
-  </div>
- <div id="phoneCursor" style="position:fixed;width:44px;height:76px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:none;">
-  <div style="width:100%;height:100%;border:1.5px solid rgba(255,255,255,0.7);border-radius:8px;background:rgba(0,0,0,0.25);position:relative;backdrop-filter:blur(2px);">
-    <div style="position:absolute;top:5px;left:50%;transform:translateX(-50%);width:14px;height:3px;border-radius:2px;background:rgba(255,255,255,0.4);"></div>
-    <div style="position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:10px;height:3px;border-radius:2px;background:rgba(255,255,255,0.3);"></div>
-  </div>
-</div>
-
-<script>
-  const phone = document.getElementById('phoneCursor');
-  document.addEventListener('mousemove', (e) => {
-    phone.style.left = e.clientX + 'px';
-    phone.style.top = e.clientY + 'px';
-  });
-</script>
 </body>
 </html>
