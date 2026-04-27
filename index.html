@@ -124,15 +124,16 @@
   .c8 { background: rgba(100, 210, 200, 0.85); }
 
   /* POSITIONS — relative within the slab overlay area */
-.w1 { top: 18%; left: 8%; }
+.w1 { top: 20%; left: 8%; }
 .w2 { top: 14%; left: 55%; }
-.w2 .pill { width: 200px; }
-.w3 { top: 35%; left: 20%; }
-.w4 { top: 28%; left: 58%; }
+.w3 { top: 35%; left: 30%; }
+.w4 { top: 35%; left: 58%; }
 .w5 { top: 55%; left: 8%; }
-.w6 { top: 50%; left: 52%; }
+.w6 { top: 50%; left: 45%; }
 .w7 { top: 72%; left: 15%; }
-.w8 { top: 68%; left: 55%; }
+.w8 { top: 78%; left: 55%; }
+
+ {cursor: none;}
  
 </style>
 </head>
@@ -180,5 +181,19 @@
 
     </div>
   </div>
+ <div id="phoneCursor" style="position:fixed;width:44px;height:76px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:none;">
+  <div style="width:100%;height:100%;border:1.5px solid rgba(255,255,255,0.7);border-radius:8px;background:rgba(0,0,0,0.25);position:relative;backdrop-filter:blur(2px);">
+    <div style="position:absolute;top:5px;left:50%;transform:translateX(-50%);width:14px;height:3px;border-radius:2px;background:rgba(255,255,255,0.4);"></div>
+    <div style="position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:10px;height:3px;border-radius:2px;background:rgba(255,255,255,0.3);"></div>
+  </div>
+</div>
+
+<script>
+  const phone = document.getElementById('phoneCursor');
+  document.addEventListener('mousemove', (e) => {
+    phone.style.left = e.clientX + 'px';
+    phone.style.top = e.clientY + 'px';
+  });
+</script>
 </body>
 </html>
